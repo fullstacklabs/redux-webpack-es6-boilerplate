@@ -59,7 +59,8 @@ module.exports = {
           limit: 8192,
           name: 'fonts/[name].[ext]?[hash]'
         }
-      }
+      },
+      { test: /\.json$/, loader: 'json'}
     ]
   },
   postcss: function () {
@@ -68,5 +69,10 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ];
-  }
+  },
+  node: {
+    dns: 'mock',
+    net: 'mock'
+  },
+
 };

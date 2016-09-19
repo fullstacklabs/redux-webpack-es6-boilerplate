@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import Redbox from 'redbox-react';
+import { loginUserSuccess } from '../features/auth';
 
 import Root from './Root';
 import configureStore from './store/configureStore';
@@ -16,6 +17,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // Get the DOM Element that will host our React application
 const rootEl = document.getElementById('app');
+
+let token = localStorage.getItem('token');
+if (token !== null) {
+  store.dispatch(loginUserSuccess(token));
+}
 
 // Render the React application to the DOM
 render(
